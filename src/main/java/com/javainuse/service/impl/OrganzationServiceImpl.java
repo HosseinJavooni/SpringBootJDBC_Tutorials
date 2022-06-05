@@ -8,6 +8,7 @@ import com.javainuse.model.EmployeeHealthInsurance;
 import com.javainuse.service.EmployeeService;
 import com.javainuse.service.HealthInsuranceService;
 import com.javainuse.service.OrganizationService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrganzationServiceImpl implements OrganizationService {
@@ -19,8 +20,17 @@ public class OrganzationServiceImpl implements OrganizationService {
     HealthInsuranceService healthInsuranceService;
 
     @Override
+    @Transactional
     public void joinOrganization(Employee employee, EmployeeHealthInsurance employeeHealthInsurance) {
         employeeService.insertEmployee(employee);
+        //TODO
+        // !!!
+        // if @Transactional (over this method) be commented & exception throws here then employee
+        // inserted and employeeHealthInsurance don't insert in DB!
+        // So we use @Transactional
+        // !!!
+//        if(employee.getEmpName() == "emp1")
+//            throw new NullPointerException();
         healthInsuranceService.registerEmployeeHealthInsurance(employeeHealthInsurance);
     }
 
