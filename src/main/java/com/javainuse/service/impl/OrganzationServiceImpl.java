@@ -20,7 +20,7 @@ public class OrganzationServiceImpl implements OrganizationService {
     HealthInsuranceService healthInsuranceService;
 
     @Override
-    @Transactional
+    //@Transactional
     public void joinOrganization(Employee employee, EmployeeHealthInsurance employeeHealthInsurance) {
         employeeService.insertEmployee(employee);
         //TODO
